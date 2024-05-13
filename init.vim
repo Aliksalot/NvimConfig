@@ -13,7 +13,8 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <silent> <leader>s  :let @/ = '\<' . expand('<cword>') . '\>'<CR>:nohlsearch<CR>
+nnoremap <silent> <leader>sa  :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
+nnoremap <silent> <leader>ss <CR>:set nohlsearch<CR>
 nnoremap <silent> <LEFT> :vertical resize -2 <CR>
 nnoremap <silent> <RIGHT> :vertical resize +2 <CR>
 nnoremap <silent> <UP> :resize -2 <CR>
@@ -52,6 +53,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
+Plug 'folke/tokyonight.nvim'
 
 " Configure stylelint-lsp language server
 au User lsp_setup call lspconfig#stylelint#setup({})
@@ -62,8 +64,7 @@ call plug#end()
 set termguicolors
 
 set background=dark
-let g:everforest_background = 'hard'
-colorscheme everforest
+colorscheme tokyonight
 
 autocmd FileType javascript setl formatprg=eslint\ --stdin\ --stdin-filename\=%\ --fix\|%s/\s\+$//e
 autocmd FileType typescript setl formatprg=eslint\ --stdin\ --stdin-filename\=%\ --fix\|%s/\s\+$//e
