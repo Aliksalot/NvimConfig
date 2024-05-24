@@ -10,6 +10,7 @@ iabbrev html <html><C-Enter>  <head><C-Enter></head><C-Enter><body><C-Enter></bo
 iabbrev contenttype 'Content-Type': 'application/json'
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ca gg V G "*y <C-Enter>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
