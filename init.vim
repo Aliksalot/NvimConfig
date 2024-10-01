@@ -12,6 +12,8 @@ iabbrev lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ei
 iabbrev contenttype 'Content-Type': 'application/json'
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>l :split \| ter bash -c 'git log -p; read'<cr>
+nnoremap <leader>d :split \| ter bash -c 'git diff; read'<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -24,6 +26,27 @@ nnoremap <silent> <UP> :resize -2 <CR>
 nnoremap <silent> <DOWN> :resize +2 <CR>
 inoremap <LEFT> <Nop>
 inoremap <RIGHT> <Nop>
+
+nnoremap y "ay
+vnoremap y "ay
+nnoremap pp "ap
+vnoremap pp "ap
+
+nnoremap d "dd
+vnoremap d "dd
+nnoremap pd "dp
+vnoremap pd "dp
+nnoremap c "cc
+vnoremap c "cc
+nnoremap pc "cp
+vnoremap pc "cp
+nnoremap x "xx
+vnoremap x "xx
+nnoremap px "xp
+vnoremap px "xp
+
+nnoremap p "ap
+vnoremap p "ap
 
 nnoremap <Leader>c 0i//<Esc>
 
@@ -51,6 +74,9 @@ set nohlsearch
 
 "Prettier 
 Plug 'maxmellon/vim-jsx-pretty'
+
+"Handlebars 
+Plug 'mustache/vim-mustache-handlebars'
 
 "Shows tab numbers, very useful
 Plug 'sangdol/mintabline.vim'
@@ -80,10 +106,10 @@ call plug#end()
 set termguicolors
 
 " set background=dark
-colorscheme kanagawa-wave " chill
+" colorscheme kanagawa-wave " chill
 " colorscheme kanagawa-lotus " light
-" colorscheme kanagawa-dragon " dark
-" colorscheme tokyonight
+ colorscheme kanagawa-dragon " dark
+"colorscheme tokyonight
 " colorscheme neofusion
 
 autocmd FileType javascript setl formatprg=eslint\ --stdin\ --stdin-filename\=%\ --fix\|%s/\s\+$//e
