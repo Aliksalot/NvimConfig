@@ -10,7 +10,12 @@ inoreabbrev modstyle className={style<C-R>=ModStyle()<CR>
 iabbrev lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
 " iabbrev html <html><C-Enter>  <head><C-Enter></head><C-Enter><body><C-Enter></body><C-Enter></html>
 iabbrev contenttype 'Content-Type': 'application/json'
+iabbrev authfail new Response(null, { status: 401 });
+iabbrev normfail new Response(null, { status: 400 });
+iabbrev okresp new Response(null, { status: 200 });
 
+command! Vter vsplit | terminal
+tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>l :split \| ter bash -c 'git log -p; read'<cr>
 nnoremap <leader>d :split \| ter bash -c 'git diff; read'<cr>
@@ -27,27 +32,6 @@ nnoremap <silent> <DOWN> :resize +2 <CR>
 inoremap <LEFT> <Nop>
 inoremap <RIGHT> <Nop>
 
-nnoremap y "ay
-vnoremap y "ay
-nnoremap pp "ap
-vnoremap pp "ap
-
-nnoremap d "dd
-vnoremap d "dd
-nnoremap pd "dp
-vnoremap pd "dp
-nnoremap c "cc
-vnoremap c "cc
-nnoremap pc "cp
-vnoremap pc "cp
-nnoremap x "xx
-vnoremap x "xx
-nnoremap px "xp
-vnoremap px "xp
-
-nnoremap p "ap
-vnoremap p "ap
-
 nnoremap <Leader>c 0i//<Esc>
 
 function! JsxFunc()
@@ -60,7 +44,9 @@ function! ModStyle()
     return style.'}'
 endfunction
 
-
+" Treat _ and - as white space
+" set iskeyword-=-
+" set iskeyword-=_
 " Set tab size to 4 spaces
 set tabstop=2
 " Set indentation width to 4 spaces
@@ -96,21 +82,27 @@ Plug 'sainnhe/everforest'
 Plug 'diegoulloao/neofusion.nvim'
 Plug 'shaunsingh/solarized.nvim'
 Plug 'rebelot/kanagawa.nvim'
+Plug 'tjdevries/colorbuddy.nvim'
+Plug 'morhetz/gruvbox'
 
 " Configure stylelint-lsp language server
-au User lsp_setup call lspconfig#stylelint#setup({})
+" au User lsp_setup call lspconfig#stylelint#setup({})
 
 " Initialize plugin system
 call plug#end()
 
+set guicursor=n-v-c-i:block
+
 set termguicolors
 
-" set background=dark
+" set background=light
 " colorscheme kanagawa-wave " chill
 " colorscheme kanagawa-lotus " light
- colorscheme kanagawa-dragon " dark
-"colorscheme tokyonight
+" colorscheme kanagawa-dragon " dark
+" colorscheme tokyonight
 " colorscheme neofusion
+" colorscheme colorbuddy
+ colorscheme gruvbox
 
 autocmd FileType javascript setl formatprg=eslint\ --stdin\ --stdin-filename\=%\ --fix\|%s/\s\+$//e
 autocmd FileType typescript setl formatprg=eslint\ --stdin\ --stdin-filename\=%\ --fix\|%s/\s\+$//e
